@@ -1,5 +1,5 @@
-import 'package:cookingapp/categories_screen.dart';
-import 'package:cookingapp/category_cook_screen.dart';
+import './categories_screen.dart';
+import './category_cook_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
