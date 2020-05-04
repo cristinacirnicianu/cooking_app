@@ -1,4 +1,5 @@
-import './categories_screen.dart';
+import 'package:cookingapp/categories_screen.dart';
+import 'package:cookingapp/category_cook_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,7 +27,9 @@ class MyApp extends StatelessWidget {
           )
         ),
       ),
-      home: CategoriesScreen(),
+      initialRoute: '/',
+      routes: {'/': (ctx) =>CategoriesScreen(),
+        CategoryCookScreen.categoryRouteName: (ctx) => CategoryCookScreen(),},
     );
   }
 }
