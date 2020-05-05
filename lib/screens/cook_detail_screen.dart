@@ -1,4 +1,4 @@
-import 'package:cookingapp/dummy_data.dart';
+import '../dummy_data.dart';
 import 'package:flutter/material.dart';
 
 class CookDetailScreen extends StatelessWidget {
