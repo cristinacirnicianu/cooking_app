@@ -1,20 +1,23 @@
 import 'package:cookingapp/models/recipe.dart';
+import 'package:cookingapp/screens/cook_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CookItem extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
 
-  CookItem(
-      {@required this.title,
-      @required this.imageUrl,
-      @required this.duration,
-      @required this.complexity,
-      @required this.affordability});
+  CookItem({
+    @required this.id,
+    @required this.title,
+    @required this.imageUrl,
+    @required this.duration,
+    @required this.complexity,
+    @required this.affordability});
 
   String get complexityText {
     switch (complexity) {
@@ -31,8 +34,9 @@ class CookItem extends StatelessWidget {
         return 'Unknown';
     }
   }
+
   String get affordabilityText {
-    switch(affordability) {
+    switch (affordability) {
       case Affordability.Affordable:
         return 'Affordable';
         break;
@@ -47,12 +51,14 @@ class CookItem extends StatelessWidget {
     }
   }
 
-  void selectCook() {}
+  void selectCook(BuildContext context) {
+    Navigator.of(context).pushNamed(CookDetailScreen.routeName, arguments: id);
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectCook,
+      onTap: () => selectCook(context),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 4,
@@ -79,8 +85,8 @@ class CookItem extends StatelessWidget {
                     width: 300,
                     color: Colors.black54,
                     padding: EdgeInsets.symmetric(
-                      vertical: 5,
-                      horizontal: 20
+                        vertical: 5,
+                        horizontal: 20
                     ),
                     child: Text(
                       title,

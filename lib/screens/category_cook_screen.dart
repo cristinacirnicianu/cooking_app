@@ -22,6 +22,7 @@ class CategoryCookScreen extends StatelessWidget {
         body: ListView.builder(
           itemBuilder: (context, index) {
             return CookItem(
+              id: categoryRecipe[index].id,
               title: categoryRecipe[index].title,
               imageUrl: categoryRecipe[index].imageUrl,
               duration: categoryRecipe[index].duration,

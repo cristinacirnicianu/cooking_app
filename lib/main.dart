@@ -1,3 +1,5 @@
+import 'package:cookingapp/screens/cook_detail_screen.dart';
+
 import 'screens/categories_screen.dart';
 import 'screens/category_cook_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {'/': (ctx) =>CategoriesScreen(),
-        CategoryCookScreen.categoryRouteName: (ctx) => CategoryCookScreen(),},
+        CategoryCookScreen.categoryRouteName: (ctx) => CategoryCookScreen(),
+      CookDetailScreen.routeName: (ctx) => CookDetailScreen()},
     );
   }
 }
