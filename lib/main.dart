@@ -1,15 +1,13 @@
-import './screens/cook_detail_screen.dart';
-
-import 'screens/categories_screen.dart';
-import 'screens/category_cook_screen.dart';
 import 'package:flutter/material.dart';
+import './screens/tab_screen.dart';
+import './screens/cook_detail_screen.dart';
+import 'screens/category_cook_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       initialRoute: '/',
-      routes: {'/': (ctx) =>CategoriesScreen(),
+      routes: {'/': (ctx) =>TabScreen(),
         CategoryCookScreen.categoryRouteName: (ctx) => CategoryCookScreen(),
       CookDetailScreen.routeName: (ctx) => CookDetailScreen()},
       onUnknownRoute: (settings) {
