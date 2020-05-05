@@ -33,6 +33,18 @@ class MyApp extends StatelessWidget {
       routes: {'/': (ctx) =>CategoriesScreen(),
         CategoryCookScreen.categoryRouteName: (ctx) => CategoryCookScreen(),
       CookDetailScreen.routeName: (ctx) => CookDetailScreen()},
+//      onGenerateRoute: (settings) {
+//        print(settings.arguments);
+//        if(settings.name=='/cook-detail'){
+//          return ...;
+//        } else if( settings.name == '/someothe-page') {
+//         return ...;
+//        }
+//        return MaterialPageRoute( builder: (context) => CookDetailScreen());
+//      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute( builder: (context) => CookDetailScreen());
+      },
     );
   }
 }
