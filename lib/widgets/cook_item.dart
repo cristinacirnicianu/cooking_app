@@ -10,7 +10,7 @@ class CookItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeItem;
+
 
   CookItem({
     @required this.id,
@@ -18,8 +18,7 @@ class CookItem extends StatelessWidget {
     @required this.imageUrl,
     @required this.duration,
     @required this.complexity,
-    @required this.affordability,
-    @required this.removeItem});
+    @required this.affordability,});
 
   String get complexityText {
     switch (complexity) {
@@ -57,7 +56,7 @@ class CookItem extends StatelessWidget {
     Navigator.of(context).pushNamed(CookDetailScreen.routeName, arguments: id).then(
             (result) {
               if(result!=null){
-               removeItem(result);
+          //     removeItem(result);
               }
             });
   }

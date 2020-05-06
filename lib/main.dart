@@ -1,5 +1,5 @@
-import 'package:cookingapp/dummy_data.dart';
-import 'package:cookingapp/models/recipe.dart';
+import './dummy_data.dart';
+import './models/recipe.dart';
 
 import './screens/filter_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
     'vegetarian': false
   };
   List<Recepie> _availableMeals = DUMMY_RECEPIE;
+  List<Recepie> _favoriteMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -46,6 +47,23 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _toggleFavorite(String mealId) {
+    final exisitingIndex = _favoriteMeals.indexWhere((meal) => meal.id ==mealId);
+    if(exisitingIndex>=0){
+      setState(() {
+        _favoriteMeals.removeAt(exisitingIndex);
+      });
+    } else{
+      setState(() {
+        _favoriteMeals.add(DUMMY_RECEPIE.firstWhere((meal) => meal.id ==mealId), );
+      });
+    }
+  }
+
+  bool _isMealFavorite (String id) {
+    return _favoriteMeals.any((meal) => meal.id == id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,15 +83,15 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => TabScreen(),
+        '/': (ctx) => TabScreen(_favoriteMeals),
         CategoryCookScreen.categoryRouteName: (ctx) =>
             CategoryCookScreen(_availableMeals),
-        CookDetailScreen.routeName: (ctx) => CookDetailScreen(),
+        CookDetailScreen.routeName: (ctx) => CookDetailScreen(_toggleFavorite, _isMealFavorite),
         FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
       },
-      onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (context) => CookDetailScreen());
-      },
+//      onUnknownRoute: (settings) {
+//        return MaterialPageRoute(builder: (context) => CookDetailScreen(_favoriteMeals));
+//      },
     );
   }
 }
