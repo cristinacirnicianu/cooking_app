@@ -1,11 +1,14 @@
 import '../widgets/cook_item.dart';
 
-import '../dummy_data.dart';
 import '../models/recipe.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCookScreen extends StatefulWidget {
   static const categoryRouteName = '/categories-cook';
+  final List<Recepie> availableMeals;
+
+  CategoryCookScreen(this.availableMeals);
+
 
   @override
   _CategoryCookScreen createState() => _CategoryCookScreen();
@@ -24,23 +27,25 @@ class _CategoryCookScreen extends State<CategoryCookScreen> {
 
   @override
   void didChangeDependencies() {
-    if(!_loadInitData) {
+    if (!_loadInitData) {
       final routArgs =
-      ModalRoute.of(context).settings.arguments as Map<String, String>;
+      ModalRoute
+          .of(context)
+          .settings
+          .arguments as Map<String, String>;
       categoryTitle = routArgs['title'];
       final categoryId = routArgs['id'];
-      displayedRecipe = DUMMY_RECEPIE.where((recep) {
+      displayedRecipe = widget.availableMeals.where((recep) {
         return recep.categories.contains(categoryId);
       }).toList();
       _loadInitData = true;
     }
     super.didChangeDependencies();
-
   }
 
   void _removeMeal(String mealId) {
     setState(() {
-      displayedRecipe.removeWhere((meal) =>meal.id == mealId);
+      displayedRecipe.removeWhere((meal) => meal.id == mealId);
     });
   }
 
