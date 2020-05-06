@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import '../screens/filter_screen.dart';
 import 'package:flutter/material.dart';
 
 class DrawerContent extends StatelessWidget {
-  Widget buildListTile(String title, IconData icon) {
+  Widget buildListTile(String title, IconData icon, Function tapHandler) {
     return ListTile(
       leading: Icon(icon, size: 26),
       title: Text(title, style: TextStyle(
@@ -10,7 +10,7 @@ class DrawerContent extends StatelessWidget {
           fontSize: 24,
           fontWeight: FontWeight.bold
       ),),
-      onTap: () {},
+      onTap: tapHandler,
     );
   }
 
@@ -36,8 +36,19 @@ class DrawerContent extends StatelessWidget {
             )),
           ),
           SizedBox(),
-          buildListTile('Meals', Icons.restaurant),
-          buildListTile('Filters', Icons.settings),
+          buildListTile(
+              'Meals',
+              Icons.restaurant,
+              () {
+                Navigator.of(context).pushNamed('/');
+              }
+          ),
+          buildListTile(
+              'Filters',
+              Icons.settings,
+                  () {
+                Navigator.of(context).pushNamed(FiltersScreen.routeName);
+                  }),
         ],
       ),
     );
